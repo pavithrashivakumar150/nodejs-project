@@ -1,13 +1,13 @@
 def registry = 'https://nodejsapplication.jfrog.io'
-def imageName = 'npmimage-docker-local'
+def imageName = 'nodejsapplication.jfrog.io/npmimage-docker-local/node-js'
 def version   = '1.0.2'
 pipeline{
     agent {
         node {
-            label "valaxy"
+            label "nodejs"
         }
     }
-    tools {nodejs 'nodejs-16'}
+    tools {nodejs 'nodejs'}
 
     stages {
         stage('build') {
@@ -40,19 +40,13 @@ stage(" Docker Build ") {
         steps {
             script {
                echo '<--------------- Docker Publish Started --------------->'  
-                docker.withRegistry(registry, 'jfrog-access'){
+                docker.withRegistry(registry, '	npmjgrog'){
                     app.push()
                 }    
                echo '<--------------- Docker Publish Ended --------------->'  
             }
         }
     }
-            stage('Deployment') {
-            steps {
-                echo '<--------------- deployment started  --------------->'
-                sh './deploy.sh'
-                echo '<------------- deployment stopped  --------------->'
-            }
-        }  
+            
     }
     }
