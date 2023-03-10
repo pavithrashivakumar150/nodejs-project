@@ -1,5 +1,5 @@
 def registry = 'https://nodejsapplication.jfrog.io'
-def imageName = 'nodejsapplication.jfrog.io/npmimage-docker-local/node-js'
+def imageName = 'npmimage-docker-local'
 def version   = '1.0.2'
 pipeline{
     agent {
